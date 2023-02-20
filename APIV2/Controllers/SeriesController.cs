@@ -14,14 +14,18 @@ namespace APIV2.Controllers
     public class SeriesController : ControllerBase
     {
         private readonly SeriesDbContext _context;
+        private readonly SeriesController controller;
+
 
         public SeriesController(SeriesDbContext context)
         {
-            _context = context;
+            controller = new SeriesController(context);
         }
 
         // GET: api/Series
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Serie))]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<IEnumerable<Serie>>> GetSeries()
         {
             return await _context.Series.ToListAsync();
