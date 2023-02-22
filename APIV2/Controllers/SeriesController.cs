@@ -14,12 +14,11 @@ namespace APIV2.Controllers
     public class SeriesController : ControllerBase
     {
         private readonly SeriesDbContext _context;
-        private readonly SeriesController controller;
 
 
         public SeriesController(SeriesDbContext context)
         {
-            controller = new SeriesController(context);
+            _context = context;
         }
 
         // GET: api/Series
